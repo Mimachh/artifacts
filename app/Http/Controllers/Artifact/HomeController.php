@@ -36,8 +36,8 @@ class HomeController extends Controller
         // $this->mimach->goTo($this->destination->gear_crafting());
         
 
-        $mimach = new Mimach(); // Remplacez par votre logique d'initialisation
-        $destination = new Destination(); // Remplacez par votre logique d'initialisation
+        $mimach = new Mimach();
+        $destination = new Destination();
 
         // Définition des actions
         $actions = [
