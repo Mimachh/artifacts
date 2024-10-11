@@ -1,0 +1,49 @@
+services:
+  laravel:
+    image: ghcr.io/mimachh/php-apache-8.3:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "${APP_NAME}"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    env_file: 
+      - .env
+    networks:
+      - app-network
+    volumes:
+      - ./app/srcs:/app/srcs:delegated
+      - ./app/storage:/app/srcs/storage:delegated
+      - ./logs/apache:/var/log/apache2:delegated
+      - ./.env:/app/srcs/.env
+    depends_on:
+      - db_test_2
+
+
+  db_test_2:
+    image: postgres:16.2
+    container_name: db_test_2
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+      PGDATA: /data/postgres
+      TZ: Europe/Paris
+    volumes:
+      - db_test_2:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+          # - r-p
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+  r-p:
+    external: true
+volumes:
+  db_test_2:
+    driver: local
