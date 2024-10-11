@@ -19,9 +19,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->mimach = new Mimach();
-        $this->destination = new Destination();
-        $this->runner = new DelayRunner();
+        // $this->mimach = new Mimach();
+        // $this->destination = new Destination();
+        // $this->runner = new DelayRunner();
     }
     public function __invoke()
     {
@@ -36,37 +36,37 @@ class HomeController extends Controller
         // $this->mimach->goTo($this->destination->gear_crafting());
         
 
-        $mimach = new Mimach();
-        $destination = new Destination();
+        // $mimach = new Mimach();
+        // $destination = new Destination();
 
-        // Définition des actions
-        $actions = [
-            function () use ($mimach, $destination) {
-                echo "Action 1: Going to Cooking\n";
-                $mimach->goTo($destination->cooking());
-            },
-            function () use ($mimach, $destination) {
-                echo "Action 2: Going to Weapon Crafting\n";
-                $mimach->goTo($destination->weapon_crafting());
-            },
-            function () use ($mimach, $destination) {
-                echo "Action 3: Going to Gear Crafting\n";
-                $mimach->goTo($destination->gear_crafting());
-            },
-            function () use ($mimach, $destination) {
-                echo "Action 4: Going to Weapon Crafting Again\n";
-                $mimach->goTo($destination->weapon_crafting());
-            },
-        ];
+        // // Définition des actions
+        // $actions = [
+        //     function () use ($mimach, $destination) {
+        //         echo "Action 1: Going to Cooking\n";
+        //         $mimach->goTo($destination->cooking());
+        //     },
+        //     function () use ($mimach, $destination) {
+        //         echo "Action 2: Going to Weapon Crafting\n";
+        //         $mimach->goTo($destination->weapon_crafting());
+        //     },
+        //     function () use ($mimach, $destination) {
+        //         echo "Action 3: Going to Gear Crafting\n";
+        //         $mimach->goTo($destination->gear_crafting());
+        //     },
+        //     function () use ($mimach, $destination) {
+        //         echo "Action 4: Going to Weapon Crafting Again\n";
+        //         $mimach->goTo($destination->weapon_crafting());
+        //     },
+        // ];
 
-        $this->runner->runActionsWithDelay($actions);
+        // $this->runner->runActionsWithDelay($actions);
 
 
-        // return Inertia::render('Welcome', [
-        //     'canLogin' => Route::has('login'),
-        //     'canRegister' => Route::has('register'),
-        //     'laravelVersion' => Application::VERSION,
-        //     'phpVersion' => PHP_VERSION,
-        // ]);
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
     }
 }
